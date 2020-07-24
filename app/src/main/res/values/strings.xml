@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Brainer</string>
+    <string name="facebook_app_id">284652449293895</string>
+    <string name="fb_login_protocol_scheme">fb284652449293895</string>
+    <string name="uname">Player: </string>
+    <string name="score">Score: </string>
+</resources>
