@@ -1,4 +1,4 @@
-package com.example.brain_trainer;
+package com.brainerjorjill;
 
 // data structure for holding data from firebase
 public class Profile {

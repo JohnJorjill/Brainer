@@ -1,9 +1,8 @@
-package com.example.brain_trainer
+package com.brainerjorjill
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView

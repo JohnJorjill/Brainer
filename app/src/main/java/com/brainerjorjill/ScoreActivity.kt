@@ -1,4 +1,4 @@
-package com.example.brain_trainer
+package com.brainerjorjill
 
 import android.content.Intent
 import android.os.Bundle
@@ -21,6 +21,8 @@ class ScoreActivity : AppCompatActivity() {
 
     var recyclerView: RecyclerView? = null
     var list: ArrayList<Profile>? = null
+    var list2: ArrayList<Profile>? = ArrayList()
+    var new_list: ArrayList<Profile>? = null
     var adapter:MyAdapter? = null
 
 
@@ -36,7 +38,7 @@ class ScoreActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.myRecycler)
         recyclerView?.layoutManager = LinearLayoutManager(this)
         list = ArrayList<Profile>()
-
+        new_list = ArrayList<Profile>()
 
         // get sorted values from "Users" child
         val myTopPostsQuery = FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("score")
@@ -50,7 +52,21 @@ class ScoreActivity : AppCompatActivity() {
                     list!!.add(p)
                 }
                 list?.reverse()
-                adapter = MyAdapter(this@ScoreActivity, list)
+
+                var sizeLimit = 0
+                if (list?.size!!>10){
+                    sizeLimit = 10
+                } else {
+                    sizeLimit = list!!.size
+                }
+
+                for (x in 0 until sizeLimit){
+                    list2?.add(list!![x])
+                }
+
+                list?.clear()
+
+                adapter = MyAdapter(this@ScoreActivity, list2)
                 // connect recyclerview to adapter
                 recyclerView?.adapter = adapter
 

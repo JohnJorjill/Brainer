@@ -1,4 +1,4 @@
-package com.example.brain_trainer;
+package com.brainerjorjill;
 
 import android.content.Context;
 import android.view.LayoutInflater;

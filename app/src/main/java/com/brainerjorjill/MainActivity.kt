@@ -1,4 +1,4 @@
-package com.example.brain_trainer
+package com.brainerjorjill
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,17 +9,17 @@ import androidx.appcompat.app.AppCompatActivity
 import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
-import com.facebook.login.widget.LoginButton
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import java.util.*
 
 
@@ -128,12 +128,64 @@ class MainActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val user = auth!!.currentUser
                     FirebaseDatabase.getInstance().getReference().child("Users").child(task.result!!.user!!.uid).child("uname").setValue(user?.displayName)
+
+                    val myTopPostsQuery = FirebaseDatabase.getInstance().getReference().child("Users").child(user!!.getUid())
+
+                    myTopPostsQuery.addListenerForSingleValueEvent(object: ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                            if (!(dataSnapshot.child("score").exists())){
+                                user?.getUid()?.let {
+                                    FirebaseDatabase.getInstance().getReference().child("Users").child(
+                                        it
+                                    ).child("score")
+                                }?.setValue((0))
+                            }
+
+                            if (!(dataSnapshot.child("high_score").exists())){
+                                user?.getUid()?.let {
+                                    FirebaseDatabase.getInstance().getReference().child("Users").child(
+                                        it
+                                    ).child("high_score")
+                                }?.setValue((0))
+                            }
+
+                            if (!(dataSnapshot.child("sum_score").exists())){
+                                user?.getUid()?.let {
+                                    FirebaseDatabase.getInstance().getReference().child("Users").child(
+                                        it
+                                    ).child("sum_score")
+                                }?.setValue((0))
+                            }
+
+                            if (!(dataSnapshot.child("total_played").exists())){
+                                user?.getUid()?.let {
+                                    FirebaseDatabase.getInstance().getReference().child("Users").child(
+                                        it
+                                    ).child("total_played")
+                                }?.setValue((0))
+                            }
+
+                            if (!(dataSnapshot.child("avg_score").exists())){
+                                user?.getUid()?.let {
+                                    FirebaseDatabase.getInstance().getReference().child("Users").child(
+                                        it
+                                    ).child("avg_score")
+                                }?.setValue((0.0))
+                            }
+
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                        }
+                    })
+
                     val intent = Intent(this,MenuActivity :: class.java)
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     startActivity(intent)
                     finish()
                 } else {
-                    Toast.makeText(this,"Authorization failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,task.exception?.message, Toast.LENGTH_SHORT).show()
                 }
             }
     }
@@ -147,6 +199,58 @@ class MainActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     val user = auth?.currentUser
                     FirebaseDatabase.getInstance().getReference().child("Users").child(task.result!!.user!!.uid).child("uname").setValue(user?.displayName)
+
+                    val myTopPostsQuery = FirebaseDatabase.getInstance().getReference().child("Users").child(user!!.getUid())
+
+                    myTopPostsQuery.addListenerForSingleValueEvent(object: ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                            if (!(dataSnapshot.child("score").exists())){
+                                user?.getUid()?.let {
+                                    FirebaseDatabase.getInstance().getReference().child("Users").child(
+                                        it
+                                    ).child("score")
+                                }?.setValue((0))
+                            }
+
+                            if (!(dataSnapshot.child("high_score").exists())){
+                                user?.getUid()?.let {
+                                    FirebaseDatabase.getInstance().getReference().child("Users").child(
+                                        it
+                                    ).child("high_score")
+                                }?.setValue((0))
+                            }
+
+                            if (!(dataSnapshot.child("sum_score").exists())){
+                                user?.getUid()?.let {
+                                    FirebaseDatabase.getInstance().getReference().child("Users").child(
+                                        it
+                                    ).child("sum_score")
+                                }?.setValue((0))
+                            }
+
+                            if (!(dataSnapshot.child("total_played").exists())){
+                                user?.getUid()?.let {
+                                    FirebaseDatabase.getInstance().getReference().child("Users").child(
+                                        it
+                                    ).child("total_played")
+                                }?.setValue((0))
+                            }
+
+                            if (!(dataSnapshot.child("avg_score").exists())){
+                                user?.getUid()?.let {
+                                    FirebaseDatabase.getInstance().getReference().child("Users").child(
+                                        it
+                                    ).child("avg_score")
+                                }?.setValue((0.0))
+                            }
+
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                        }
+                    })
+
                     val intent = Intent(this,MenuActivity :: class.java)
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     startActivity(intent)

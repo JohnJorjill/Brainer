@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.brain_trainer">
+    package="com.brainerjorjill">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,14 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StatsActivity"
+        <activity android:name="com.brainerjorjill.StatsActivity"
             android:label="Stats"></activity>
         <activity
-            android:name=".ScoreActivity"
+            android:name="com.brainerjorjill.ScoreActivity"
             android:label="Leaderboards" />
-        <activity android:name=".MenuActivity" />
-        <activity android:name=".GameActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.brainerjorjill.MenuActivity" />
+        <activity android:name="com.brainerjorjill.GameActivity" />
+        <activity android:name="com.brainerjorjill.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

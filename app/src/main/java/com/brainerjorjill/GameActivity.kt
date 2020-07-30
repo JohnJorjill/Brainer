@@ -1,4 +1,4 @@
-package com.example.brain_trainer
+package com.brainerjorjill
 
 import android.content.Intent
 import android.os.Bundle

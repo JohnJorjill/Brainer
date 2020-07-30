@@ -8,12 +8,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:717153630821:android:77b60edae55239c656a48c",
+        "mobilesdk_app_id": "1:717153630821:android:b4b5902269a069a856a48c",
         "android_client_info": {
-          "package_name": "com.example.brain_trainer"
+          "package_name": "com.brainerjorjill"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "717153630821-eg36d25aa5ohdkq4o7b9p26h3quve9al.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.brainerjorjill",
+            "certificate_hash": "7e0df27e4f98d014b91b7f49b10c6d5c028c7669"
+          }
+        },
         {
           "client_id": "717153630821-7e56msh29l8qrh2f8nepcc9i19bfepu8.apps.googleusercontent.com",
           "client_type": 3
